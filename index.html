@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./logo.jpg">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>www.future-residency.com</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div>
+        <header>
+            <div class="logo">
+             <h1>Future Residency Limited</h1>
+            </div>
+            <ul>
+             <li><a href="#"class="active">Home</a></li>
+             <li><a href="about.html">About Us</a></li>
+             <li><a href="properties.html">Properties</a></li>
+             <li><a href="services.html">Services</a></li>
+             <li><a href="contact.html">Contact</a></li>
+             <li><a href="login.html">Login</a></li>
+             <li><a href="register.html">Register</a></li>
+        </header>
+            <div class="banner">
+                <div class="thumb">
+                    <a href="properties.html"><img src="./images/bn1.jpg" alt=""></a>
+                    <a href="properties.html"><img src="./images/bn2.jpg" alt=""></a>
+                    <a href="properties.html"><img src="./images/bn3.jpg" alt=""></a>
+                    <a href="properties.html"><img src="./images/bn4.jpg" alt=""></a>
+                </div>
+                <div class="text">
+                    <h2>Find Your Personal Dream Home Right Now!</h2>
+                    <p>Welcome to our website</p>
+                    <form>
+                        <input type="text" name="search" id="srch"
+                         required placeholder="Find Your Personal Dream Home Right Now!">
+                        <button type="submit">Find</button>
+                    </form>
+                </div>
+                <div class="prev">&lt;</div>
+                <div class="next">&gt;</div>
+                <div class="slide-nav">
+                    <div class="nav-dot dot-active">1</div>
+                    <div class="nav-dot">2</div>
+                    <div class="nav-dot">3</div>
+                    <div class="nav-dot">4</div>
+                </div>
+            </div>
+        <footer>
+            <div class="content">
+                <div class="box">
+                    <h2>WHO WE ARE</h2>
+                    <p>We are the award winning and acclaimed real estate
+                        company that handles your residential needs. Our staffs are
+                        always willing to help you out in your endeavour.
+                    </p>
+                    <h3>Trusted by more than 1000+ people</h3>
+                </div>
+                <div class="box">
+                    <h2>CONTACT US</h2>
+                    <h3><i class="fa fa-map-marker"> Location</i></h3>
+                    <P>192 Kabar Aye Pagoda Rd, Yangon 11201</P>
+                    <h3><i class="fa fa-phone"> Phone</i></h3>
+                    <p>+959579820382</p>
+                    <h3><i class="fa fa-envelope-o"> Email</i></h3>
+                    <p>FRL@gmail.com</p>
+                </div>
+                <div class="box">
+                    <h2>LATEST NEWS</h2>
+                    <h3><i class="fa fa-twitter"> We have expanded!</i></h3>
+                    <p>Our new branches are available in Bangkok, Singapore and Japan</p>
+                    <h2>LATEST NEWS</h2>
+                    <h3><i class="fa fa-twitter"> New Choices In Singapore</i></h3>
+                    <p>Although some think Singaporian real estate market is expensive, with
+                        the correct choice, it is easy to get into one.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <p>&copy . 2022 Future Residency Limited . All Rights Reserved</p>
+                <div class="social">
+                    <a href="#"><i class="fa fa-facebook"></i> Facebook</a>
+                    <a href="#"><i class="fa fa-twitter"></i> Twitter</a>
+                    <a href="#"><i class="fa fa-instagram"></i> Instagram</a>
+                    <a href="#"><i class="fa fa-linkedin"></i> Linkedin</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script>
+        const banner = document.querySelector('.banner');
+        const images = document.querySelectorAll('.banner img');
+        const dots = document.querySelectorAll('.banner .nav-dot');
+        const prev = document.querySelector('.banner .prev');
+        const next = document.querySelector('.banner .next');
+
+        let slideIndex = 0;
+        slideShow(slideIndex);
+        function slideShow(n){
+            if(slideIndex > images.length - 1){
+                slideIndex = 0;
+            }
+            if(slideIndex < 0){
+                slideIndex =  images.length - 1;
+            }
+            let i;
+            for(i=0; i<images.length; i++){
+                images[i].style.display ='none';
+            }
+            for(i=0; i<dots.length; i++){
+                dots[i].className = dots[i].className.replace(' dot-active','');
+            }
+            images[slideIndex].style.display ='block';
+            dots[slideIndex].className += ' dot-active';
+        }
+        dots.forEach((item,index)=>{
+            item.addEventListener('click',()=>{
+                slideShow(slideIndex = index);
+            })
+        })
+        prev.addEventListener('click',()=>{
+            slideShow(slideIndex -= 1);
+        })
+        next.addEventListener('click',()=>{
+            slideShow(slideIndex += 1);
+        })
+        let run;
+        autoSlide();
+        function autoSlide(){
+            run = setInterval(()=>{
+                slideShow(slideIndex +=1);
+            }, 2000)
+        }
+        banner.addEventListener('mouseover',()=>{
+            clearInterval(run);
+            run=null;
+        })
+        banner.addEventListener('mouseout',()=>{
+            autoSlide()
+        })
+    </script>
+    
+    
+</body>
+</html>
